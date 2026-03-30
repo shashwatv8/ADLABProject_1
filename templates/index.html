@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <p class="label-tag">Estimation Tool</p>
+        <h1>House Price Predictor</h1>
+    </div>
+
+    <form action="/predict" method="POST">
+
+        <p class="section-title">Property Details</p>
+
+        <div class="field">
+            <label for="area">Area (sq ft)</label>
+            <input type="number" id="area" name="area" placeholder="e.g. 1800" required>
+        </div>
+
+        <div class="row">
+            <div class="field">
+                <label for="bedrooms">Bedrooms</label>
+                <input type="number" id="bedrooms" name="bedrooms" placeholder="3" required>
+            </div>
+            <div class="field">
+                <label for="bathrooms">Bathrooms</label>
+                <input type="number" id="bathrooms" name="bathrooms" placeholder="2" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="field">
+                <label for="stories">Stories</label>
+                <input type="number" id="stories" name="stories" placeholder="2" required>
+            </div>
+            <div class="field">
+                <label for="parking">Parking</label>
+                <input type="number" id="parking" name="parking" placeholder="1" required>
+            </div>
+        </div>
+
+        <hr class="divider">
+        <p class="section-title">Amenities</p>
+
+        <div class="row">
+            <div class="field">
+                <label for="mainroad">Main Road</label>
+                <div class="select-wrap">
+                    <select id="mainroad" name="mainroad">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field">
+                <label for="guestroom">Guest Room</label>
+                <div class="select-wrap">
+                    <select id="guestroom" name="guestroom">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="field">
+                <label for="basement">Basement</label>
+                <div class="select-wrap">
+                    <select id="basement" name="basement">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field">
+                <label for="hotwaterheating">Hot Water</label>
+                <div class="select-wrap">
+                    <select id="hotwaterheating" name="hotwaterheating">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="field">
+                <label for="airconditioning">AC</label>
+                <div class="select-wrap">
+                    <select id="airconditioning" name="airconditioning">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field">
+                <label for="prefarea">Pref. Area</label>
+                <div class="select-wrap">
+                    <select id="prefarea" name="prefarea">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="furnishingstatus">Furnishing Status</label>
+            <div class="select-wrap">
+                <select id="furnishingstatus" name="furnishingstatus">
+                    <option value="furnished">Furnished</option>
+                    <option value="semi-furnished">Semi-Furnished</option>
+                    <option value="unfurnished">Unfurnished</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit">Predict Price →</button>
+
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+</div>
+
+</body>
+</html>
