@@ -5,26 +5,28 @@ from model import train_model
 
 app = Flask(__name__)
 
-# Load model
 model, columns = train_model()
-
 
 @app.route("/")
 def home():
     return render_template("index.html")
 
-
 @app.route("/predict", methods=["POST"])
 def predict():
     try:
-        # Numerical inputs
         area = float(request.form["area"])
+
+        if area < 1000:
+            return render_template(
+                "index.html",
+                prediction_text=" Error: Area must be at least 1000 sq ft"
+            )
+
         bedrooms = int(request.form["bedrooms"])
         bathrooms = int(request.form["bathrooms"])
         stories = int(request.form["stories"])
         parking = int(request.form["parking"])
 
-        # Categorical inputs
         mainroad = request.form["mainroad"]
         guestroom = request.form["guestroom"]
         basement = request.form["basement"]
@@ -33,17 +35,14 @@ def predict():
         prefarea = request.form["prefarea"]
         furnishingstatus = request.form["furnishingstatus"]
 
-        # Create dataframe
         input_df = pd.DataFrame(np.zeros((1, len(columns))), columns=columns)
 
-        # Fill numerical
         input_df["area"] = area
         input_df["bedrooms"] = bedrooms
         input_df["bathrooms"] = bathrooms
         input_df["stories"] = stories
         input_df["parking"] = parking
 
-        # Fill categorical (one-hot encoding)
         for col in input_df.columns:
             if col == f"mainroad_{mainroad}":
                 input_df[col] = 1
@@ -60,7 +59,6 @@ def predict():
             if col == f"furnishingstatus_{furnishingstatus}":
                 input_df[col] = 1
 
-        # Prediction
         prediction = model.predict(input_df)[0]
 
         return render_template(
@@ -71,9 +69,8 @@ def predict():
     except Exception as e:
         return render_template(
             "index.html",
-            prediction_text=f"Error: {str(e)}"
+            prediction_text=f"❌ Error: {str(e)}"
         )
-
 
 if __name__ == "__main__":
     app.run(debug=True)
