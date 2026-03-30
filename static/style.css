@@ -7,23 +7,26 @@ body {
     background: #f4f3f0;
     min-height: 100vh;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    padding: 48px 16px;
+    padding: 20px;
 }
 
 .card {
     background: #fff;
     border: 1px solid #d9d6d0;
     width: 100%;
-    max-width: 420px;
-    padding: 36px 32px 40px;
+    max-width: 960px;
+    padding: 28px 36px 32px;
 }
 
 .header {
     border-bottom: 1px solid #e8e5e0;
-    padding-bottom: 20px;
-    margin-bottom: 28px;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
 }
 
 .label-tag {
@@ -32,7 +35,6 @@ body {
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #999;
-    margin-bottom: 6px;
 }
 
 h1 {
@@ -42,32 +44,46 @@ h1 {
     letter-spacing: -0.02em;
 }
 
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+}
+
+.col {
+    padding: 0 24px;
+    border-right: 1px solid #e8e5e0;
+}
+
+.col:first-child { padding-left: 0; }
+.col:last-child  { padding-right: 0; border-right: none; }
+
 .section-title {
     font-family: 'IBM Plex Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #aaa;
-    margin: 24px 0 12px;
+    margin-bottom: 14px;
 }
 
 .field {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 label {
     display: block;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: #444;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 input, select {
     width: 100%;
-    padding: 9px 11px;
+    padding: 7px 10px;
     font-family: 'IBM Plex Sans', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     color: #1a1a1a;
     background: #faf9f7;
     border: 1px solid #d4d0ca;
@@ -95,49 +111,45 @@ input::placeholder {
 .select-wrap::after {
     content: '↓';
     position: absolute;
-    right: 11px;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 12px;
+    font-size: 11px;
     color: #999;
     pointer-events: none;
 }
 
-.row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-}
-
-.divider {
-    border: none;
+.footer {
     border-top: 1px solid #e8e5e0;
-    margin: 24px 0;
+    margin-top: 20px;
+    padding-top: 18px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 button {
-    width: 100%;
-    padding: 11px;
-    margin-top: 8px;
+    padding: 10px 32px;
     background: #1a1a1a;
     color: #fff;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     border: none;
     cursor: pointer;
     transition: background 0.15s;
+    white-space: nowrap;
 }
 
 button:hover { background: #333; }
 
 .result {
-    margin-top: 20px;
-    padding: 14px;
+    padding: 10px 16px;
     background: #f4f3f0;
     border-left: 3px solid #1a1a1a;
     font-family: 'IBM Plex Mono', monospace;
     font-size: 13px;
     color: #1a1a1a;
+    flex: 1;
 }
