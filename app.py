@@ -63,13 +63,13 @@ def predict():
 
         return render_template(
             "index.html",
-            prediction_text=f"Estimated Price: ₹ {round(prediction, 2)}"
+            prediction_text=f"Estimated Price: $ {round(prediction, 2)}"
         )
 
     except Exception as e:
         return render_template(
             "index.html",
-            prediction_text=f"❌ Error: {str(e)}"
+            prediction_text=f" Error: {str(e)}"
         )
 
 if __name__ == "__main__":
